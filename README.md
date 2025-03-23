@@ -9,4 +9,8 @@ Key Features
 ✅ Income Utilization – Analyzes how customers allocate their income between savings, investments, and expenses.<br>
 ✅ Interactive Visuals – Dynamic filters and drill-down capabilities for a deeper understanding.<br>
 
+Demograpics
 ![image](https://github.com/user-attachments/assets/a35a8440-d591-44ca-9a86-92e4044fec4a)
+
+Spends
+![image](https://github.com/user-attachments/assets/92ca077c-902d-4588-aed0-6273497c34cd)
