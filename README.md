@@ -8,3 +8,5 @@ Key Features
 ✅ Expenditure Insights – Tracks spending habits across different categories and time periods. <br>
 ✅ Income Utilization – Analyzes how customers allocate their income between savings, investments, and expenses.<br>
 ✅ Interactive Visuals – Dynamic filters and drill-down capabilities for a deeper understanding.<br>
+
+![image](https://github.com/user-attachments/assets/a35a8440-d591-44ca-9a86-92e4044fec4a)
