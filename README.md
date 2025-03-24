@@ -42,3 +42,7 @@ Demograpics
 
 Spends
 ![image](https://github.com/user-attachments/assets/92ca077c-902d-4588-aed0-6273497c34cd)
+
+Income Utilization
+![image](https://github.com/user-attachments/assets/cff69b28-d0ac-4835-ad4e-d35d69c40af7)
+
