@@ -3,6 +3,9 @@ This Power BI dashboard provides an in-depth analysis of bank customers' data, f
 Overview
 This Power BI dashboard provides an in-depth analysis of bank customers' data, focusing on demographics, expenditures, and income utilization. It offers valuable insights into customer behavior, spending patterns, and financial habits, helping banks make data-driven decisions.<br>
 
+<a href='https://app.powerbi.com/view?r=eyJrIjoiN2Q3OTFlODQtNGJkOC00OTJmLWEwMDQtM2RkOWU5MzkwMzE2IiwidCI6ImM2ZTU0OWIzLTVmNDUtNDAzMi1hYWU5LWQ0MjQ0ZGM1YjJjNCJ9'>live dashboard</a>
+
+
 Key Features<br>
 ✅ Demographic Analysis – Visualizes customer distribution by age group, gender, city, and other key factors.<br>
 ✅ Expenditure Insights – Tracks spending habits across different categories and time periods. <br>
@@ -46,4 +49,3 @@ Spends
 Income Utilization
 ![image](https://github.com/user-attachments/assets/cff69b28-d0ac-4835-ad4e-d35d69c40af7)
 
-<a href='https://app.powerbi.com/view?r=eyJrIjoiN2Q3OTFlODQtNGJkOC00OTJmLWEwMDQtM2RkOWU5MzkwMzE2IiwidCI6ImM2ZTU0OWIzLTVmNDUtNDAzMi1hYWU5LWQ0MjQ0ZGM1YjJjNCJ9'>live dashboard</a>
