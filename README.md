@@ -49,3 +49,40 @@ Spends
 Income Utilization
 ![image](https://github.com/user-attachments/assets/cff69b28-d0ac-4835-ad4e-d35d69c40af7)
 
+
+### measure 
+<ol>
+  <li >
+    Total Customer - Not affected by any filter <br>
+Total_Customers = 
+CALCULATE(
+    DISTINCTCOUNT(dim_customers[customer_id]), 
+    ALL(dim_customers)
+)
+  </li>
+  <li>
+    Total_Male_Customers - affected by filters as no ALL() used. <br>
+    Total_Male_Customers = 
+CALCULATE(
+    DISTINCTCOUNT(dim_customers[customer_id]), 
+    dim_customers[gender] = "Male"
+)
+  </li>
+  <li>
+    Total_Female_Customers = 
+CALCULATE(
+    DISTINCTCOUNT(dim_customers[customer_id]), 
+    dim_customers[gender] = "Female"
+)
+  </li>
+  <li>
+    Total spends = sum(fact_spends[spend])
+  </li>
+  <li>
+    Avg_Spends = 
+VAR SelectedMonths = DISTINCTCOUNT(fact_spends[month])
+RETURN 
+SUM(fact_spends[spend]) / IF(SelectedMonths = 0, 6, SelectedMonths)
+
+  </li>
+</ol>
