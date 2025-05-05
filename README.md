@@ -53,39 +53,49 @@ Income Utilization
 ### measure 
 <ol>
   <li >
+    <pre>
     Total Customer - Not affected by any filter <br>
 Total_Customers = 
 CALCULATE(
     DISTINCTCOUNT(dim_customers[customer_id]), 
     ALL(dim_customers)
-)
+) </pre>
   </li>
   <li>
-    Total_Male_Customers - affected by filters as no ALL() used. <br>
+    <pre>
+      Total_Male_Customers - affected by filters as no ALL() used. <br>
     Total_Male_Customers = 
 CALCULATE(
     DISTINCTCOUNT(dim_customers[customer_id]), 
     dim_customers[gender] = "Male"
 )
+    </pre>
+    
   </li>
   <li>
+    <pre>
     Total_Female_Customers = 
 CALCULATE(
     DISTINCTCOUNT(dim_customers[customer_id]), 
     dim_customers[gender] = "Female"
 )
+    </pre>
   </li>
   <li>
     Total spends = sum(fact_spends[spend])
   </li>
   <li>
-    Avg_Spends = 
+    <pre>
+      Avg_Spends = 
 VAR SelectedMonths = DISTINCTCOUNT(fact_spends[month])
 RETURN 
 SUM(fact_spends[spend]) / IF(SelectedMonths = 0, 6, SelectedMonths)
 
+    </pre>
+    
   </li>
   <li>
+    
     total avg income = sum(dim_customers[avg_income])
   </li>
   <li>
@@ -93,7 +103,7 @@ SUM(fact_spends[spend]) / IF(SelectedMonths = 0, 6, SelectedMonths)
 
   </li>
   <li>
-    % Spends by Payment Method = 
+    <pre> % Spends by Payment Method = 
 VAR TotalSpendsPerCategory = 
     CALCULATE(
         SUM(fact_spends[spend]), 
@@ -101,6 +111,26 @@ VAR TotalSpendsPerCategory =
     )
 RETURN 
 DIVIDE(SUM(fact_spends[spend]), TotalSpendsPerCategory, 0)
+</pre>
+   
+  </li>
+  <li>
+    Rank Category = RANKX(ALL(fact_spends[category]),[Total spends],,DESC,Dense)
+  </li>
+  <li>
+    <pre>
+       Top Categories = 
+var selected_top =SELECTEDVALUE('Cat'[tops])
+var top_categores = SWITCH(selected_top, 
+"Top 2", if([Rank Category] <= 2,[Total spends]), 
+"Top 3", if([Rank Category] <= 3,[Total spends]), 
+"Top 4", if([Rank Category] <= 4,[Total spends]), 
+"Top 5", if([Rank Category] <= 5,[Total spends]), 
+"Top 6", if([Rank Category] <= 6,[Total spends]), 
+[Total spends])
 
+return top_categores
+    </pre>
+   
   </li>
 </ol>
