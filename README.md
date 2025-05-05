@@ -85,4 +85,13 @@ RETURN
 SUM(fact_spends[spend]) / IF(SelectedMonths = 0, 6, SelectedMonths)
 
   </li>
+  <li>
+    total avg income = sum(dim_customers[avg_income])
+  </li>
+  <li>
+    AvgIncomeUtilization% = 
+
+    DIVIDE([Avg_Spends], [total avg income], 0) 
+
+  </li>
 </ol>
