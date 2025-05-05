@@ -89,9 +89,18 @@ SUM(fact_spends[spend]) / IF(SelectedMonths = 0, 6, SelectedMonths)
     total avg income = sum(dim_customers[avg_income])
   </li>
   <li>
-    AvgIncomeUtilization% = 
+    AvgIncomeUtilization% = DIVIDE([Avg_Spends], [total avg income], 0) 
 
-    DIVIDE([Avg_Spends], [total avg income], 0) 
+  </li>
+  <li>
+    % Spends by Payment Method = 
+VAR TotalSpendsPerCategory = 
+    CALCULATE(
+        SUM(fact_spends[spend]), 
+        ALLEXCEPT(fact_spends, fact_spends[category])  -- Keeps only the Spending Category filter
+    )
+RETURN 
+DIVIDE(SUM(fact_spends[spend]), TotalSpendsPerCategory, 0)
 
   </li>
 </ol>
