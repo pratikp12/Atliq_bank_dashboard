@@ -51,86 +51,24 @@ Income Utilization
 
 
 ### measure 
-<ol>
-  <li >
-    <pre>
-    Total Customer - Not affected by any filter <br>
-Total_Customers = 
-CALCULATE(
-    DISTINCTCOUNT(dim_customers[customer_id]), 
-    ALL(dim_customers)
-) </pre>
-  </li>
-  <li>
-    <pre>
-      Total_Male_Customers - affected by filters as no ALL() used. <br>
-    Total_Male_Customers = 
-CALCULATE(
-    DISTINCTCOUNT(dim_customers[customer_id]), 
-    dim_customers[gender] = "Male"
-)
-    </pre>
-    
-  </li>
-  <li>
-    <pre>
-    Total_Female_Customers = 
-CALCULATE(
-    DISTINCTCOUNT(dim_customers[customer_id]), 
-    dim_customers[gender] = "Female"
-)
-    </pre>
-  </li>
-  <li>
-    Total spends = sum(fact_spends[spend])
-  </li>
-  <li>
-    <pre>
-      Avg_Spends = 
-VAR SelectedMonths = DISTINCTCOUNT(fact_spends[month])
-RETURN 
-SUM(fact_spends[spend]) / IF(SelectedMonths = 0, 6, SelectedMonths)
+<pre>
+Total Customer: Counts all unique customers, ignoring filters.
 
-    </pre>
-    
-  </li>
-  <li>
-    
-    total avg income = sum(dim_customers[avg_income])
-  </li>
-  <li>
-    AvgIncomeUtilization% = DIVIDE([Avg_Spends], [total avg income], 0) 
+Total Male Customers: Counts unique male customers, influenced by filters.
 
-  </li>
-  <li>
-    <pre> % Spends by Payment Method = 
-VAR TotalSpendsPerCategory = 
-    CALCULATE(
-        SUM(fact_spends[spend]), 
-        ALLEXCEPT(fact_spends, fact_spends[category])  -- Keeps only the Spending Category filter
-    )
-RETURN 
-DIVIDE(SUM(fact_spends[spend]), TotalSpendsPerCategory, 0)
+Total Female Customers: Counts unique female customers, also affected by filters.
+
+Total Spends: Sums up all spending records.
+
+Average Spends: Calculates average spending across selected months, defaulting to six if none are chosen.
+
+Total Average Income: Sums up the average income of all customers.
+
+Avg Income Utilization %: Measures spending as a percentage of total average income.
+
+% Spends by Payment Method: Calculates spending contribution within a payment category while keeping category filters intact.
+
+Rank Category: Ranks spending categories in descending order.
+
+Top Categories: Retrieves spending totals for dynamically selected top-ranked categories.
 </pre>
-   
-  </li>
-  <li>
-    Rank Category = RANKX(ALL(fact_spends[category]),[Total spends],,DESC,Dense)
-  </li>
-  <li>
-    <pre>
-       Top Categories = 
-var selected_top =SELECTEDVALUE('Cat'[tops])
-var top_categores = SWITCH(selected_top, 
-"Top 2", if([Rank Category] <= 2,[Total spends]), 
-"Top 3", if([Rank Category] <= 3,[Total spends]), 
-"Top 4", if([Rank Category] <= 4,[Total spends]), 
-"Top 5", if([Rank Category] <= 5,[Total spends]), 
-"Top 6", if([Rank Category] <= 6,[Total spends]), 
-[Total spends])
-
-return top_categores
-    </pre>
-   
-  </li>
-</ol>
